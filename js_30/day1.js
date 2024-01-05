@@ -2,11 +2,23 @@
  * @param {number} n
  * @return {Function} counter
  */
+
+// Approach 1:
+
 var createCounter = function(n) {
     let count = n-1;
   return function() {
     count += 1;
     return count;
+  }
+};
+
+// Approach 2:
+
+var createCounter = function(n) {
+
+  return function() {
+    return n++;
   }
 };
  
