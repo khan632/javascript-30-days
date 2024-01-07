@@ -1,0 +1,57 @@
+Day 3: Counter II
+
+ 
+/**
+ * @param {integer} init
+ * @return { increment: Function, decrement: Function, reset: Function }
+ */
+
+//Approach 1:
+var createCounter = function(init) {
+    let counterValue = init;
+    return {
+        increment: () => {
+            counterValue++;
+            return counterValue;
+        },
+        decrement: () => {
+            counterValue--;
+            return counterValue;
+        },
+        reset: () => {
+            counterValue = init;
+            return counterValue;
+        }
+    }
+};
+
+// Approach 2: 
+
+var createCounter = function(init) {
+  let counterValue = init;
+
+  const increment = function() {
+    counterValue++;
+    return counterValue;
+  };
+
+  const decrement = function() {
+    counterValue--;
+    return counterValue;
+  };
+
+  const reset = function() {
+    counterValue = init;
+    return counterValue;
+  };
+
+  return { increment, decrement, reset };
+};
+
+
+/**
+ * const counter = createCounter(5)
+ * counter.increment(); // 6
+ * counter.reset(); // 5
+ * counter.decrement(); // 4
+ */
