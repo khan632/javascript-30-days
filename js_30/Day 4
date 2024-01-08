@@ -1,0 +1,14 @@
+// Day 4: Array transform
+
+/**
+ * @param {number[]} arr
+ * @param {Function} fn
+ * @return {number[]}
+ */
+var map = function(arr, fn) {
+   let answer = [];
+    arr.forEach((x,i) => {
+        answer.push(fn(x,i));
+    });
+    return answer;
+};
