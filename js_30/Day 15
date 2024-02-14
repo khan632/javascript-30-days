@@ -1,0 +1,32 @@
+// Day 15: Promise Time Limit
+
+/**
+ * @param {Function} fn
+ * @param {number} t
+ * @return {Function}
+ */
+var timeLimit = function(fn, t) {
+  return async function(...args) {
+    return new Promise((delayRes, reject) => {
+      const timeOutID = setTimeout(() => {
+        clearTimeout(timeOutID);
+        reject("Time Limit Exceeded");
+      }, t);
+
+      fn(...args)
+        .then((result) => {
+          clearTimeout(timeOutID);
+          delayRes(result);
+        })
+        .catch((error) => {
+          clearTimeout(timeOutID);
+          reject(error);
+        });
+    });
+  };
+};
+
+/**
+ * const limited = timeLimit((t) => new Promise(res => setTimeout(res, t)), 100);
+ * limited(150).catch(console.log) // "Time Limit Exceeded" at t=100ms
+ */
